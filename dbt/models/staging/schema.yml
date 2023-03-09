@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: gharchive-379414
+    schema: gharchive_data
+    
+
+    tables:
+      - name: '2015'
+      - name: '2020'
