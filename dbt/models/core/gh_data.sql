@@ -4,7 +4,6 @@ with gh_2015_data as (
     select 
         *
     from {{ ref("stg_2015_data") }}
-    limit 10
 
 ),
 
@@ -12,15 +11,13 @@ gh_2020_data as (
     select 
         *
     from {{ ref("stg_2020_data") }}
-    limit 10
 
 ),
 
 gh_data as (
     select * from gh_2015_data
-    UNION
+    UNION ALL
     select * from gh_2020_data
-    limit 30
 )
 
 select
@@ -28,18 +25,18 @@ select
     gh_data.repo_name,
     gh_data.type,
 
-    gh_data.id
-    gh_data.public_repo,
-    gh_data.created_at as datetime,
+    gh_data.id,
+    gh_data.public as public_repo,
+    gh_data.created_at,
     gh_data.repo_id,
     gh_data.org_exists,
     gh_data.count_commits,
 
-    YEAR(datetime) AS year,
-    MONTH(datetime) AS month,
-    DAY(datetime) AS day,
-    DATEPART(weekday, datetime) as dayOfTheWeek,
-    DATEPART(hour, datetime) as hourOfTheDay
+    FORMAT_DATE('%H', created_at) AS hour,
+    FORMAT_DATE('%A', created_at) AS dayOfTheWeek,
+    FORMAT_DATE('%d', created_at) AS day,
+    FORMAT_DATE('%b', created_at) AS month,
+    FORMAT_DATE('%G', created_at) AS year
 
 from gh_data
-limit 50
+

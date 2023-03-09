@@ -13,4 +13,3 @@ select
     cast(count_commits as integer) as count_commits	
     
 from {{ source("staging", "2015") }}
-limit 10 
