@@ -1,3 +1,16 @@
+#added by me
+*.json
+.prefect
+.ssh
+.vscode-server
+.local
+.jupyter
+.ivy2
+.ipython
+.gsutil
+.config
+.prefectignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
