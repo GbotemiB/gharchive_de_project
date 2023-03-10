@@ -1,0 +1,1 @@
+Store credential here as <credentials.json>
