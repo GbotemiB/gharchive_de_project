@@ -25,3 +25,51 @@ The data pipeline involves the following:
 * creating dashboards
   
 ![show](images/arch%20.jpg)
+
+## Setup
+
+to setup this project, [GCP account](https://cloud.google.com/) will be required.
+
+to setup terraform, [click here](terraform/README.md)
+
+login into the google compute instance using ssh. to setup gcp with vscode [click here]()
+
+### Installing java runtime and spark
+create a directory for the installation and enter the directory
+```
+mkdir spark && cd spark
+```
+```shell
+wget https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
+```
+extract the file
+```
+tar xzvf openjdk-11.0.1_linux-x64_bin.tar.gz
+```
+download spark
+```
+wget https://dlcdn.apache.org/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz
+```
+extract the file
+```
+tar xzfv spark-3.3.2-bin-hadoop3.tgz
+```
+
+to add the java and spark to path
+```
+nano ./bashrc 
+```
+scroll to the bottom and add the following
+```
+export JAVA_HOME="${HOME}/spark/jdk-11.0.1"
+export PATH="${JAVA_HOME}/bin:${PATH}"
+
+export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
+export PATH="${SPARK_HOME}/bin:${PATH}
+```
+after exiting, 
+logout and login back into the session to effect the changes or run `source ~/.bashrc`
+
+### Installing Docker
+
+`sudo apt install docker.io`
