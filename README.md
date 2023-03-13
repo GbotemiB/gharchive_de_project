@@ -1,4 +1,4 @@
-# GHArchive_DE_project
+# GHArchive DE project
 This is a  Data Enginerering Project using [Github Archive data](https://www.gharchive.org/)
 
 ## Problem Description
@@ -26,13 +26,16 @@ The data pipeline involves the following:
   
 ![show](images/arch%20.jpg)
 
+## Dashboard
+![show](images/results.png)
+
 ## Setup
 
 to setup this project, [GCP account](https://cloud.google.com/) will be required.
 
-to setup terraform, [click here](terraform/README.md)
+Instructions to setup Terraform and GCP infrastruture [click here](terraform/README.md)
 
-login into the google compute instance using ssh. to setup gcp with vscode [click here]()
+login into the google compute instance using ssh. to setup gcp with vscode [click here](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=13)
 
 ### Installing java runtime and spark
 create a directory for the installation and enter the directory
@@ -72,4 +75,25 @@ logout and login back into the session to effect the changes or run `source ~/.b
 
 ### Installing Docker
 
-`sudo apt install docker.io`
+```
+sudo apt install docker.io
+```
+to run doocker without sudo
+
+```
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+logout and login back, then run `docker run hello-world` to test the installation.
+
+### For Github repo
+```
+git clone https://github.com/GbotemiB/gharchive_DE_project/
+```
+
+app.prefect.cloud
+* create a prefect cloud account
+* create a workspace
+* to set api keys, go to [my profile](https://app.prefect.cloud/my/profile), click on `API Keys`, create api key, name the api key `login`, copy the key securely.
+* pnu_tK1tYE1aCkK8E7y8rWVcNCGUg47XUg0mU5T4
