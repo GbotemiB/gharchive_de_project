@@ -31,13 +31,12 @@ variable "cloud_storage" {
 }
 
 variable "compute_instance" {
-  description = "cloud Dataset that raw data (from GCS) will be written to"
   type = string
   default = "gharhive-instance"
 }
 
 variable "machine_type" {
-  description = "cloud Dataset that raw data (from GCS) will be written to"
   type = string
   default = "e2-medium"
 }
+

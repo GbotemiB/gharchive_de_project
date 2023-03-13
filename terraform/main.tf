@@ -9,7 +9,7 @@ terraform {
 
 
 provider "google" {
-  credentials = file("dataeng.json")
+  credentials = file("/home/gbotemi/Downloads/dataeng-375609-fac7ec0c9b2b.json")
 
   project = var.project
   region = var.region

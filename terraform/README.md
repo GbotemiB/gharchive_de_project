@@ -39,4 +39,43 @@ To verify your installation, run `terraform -help`
 * [Create a Service Account key](https://console.cloud.google.com/apis/credentials/serviceaccountkey). This will used throughout the entire project. 
   * Select the project you created in the previous step
   * Navigate to the [IAM section](https://console.cloud.google.com/iam-admin/serviceaccounts)
-* ![test](/terraform/image/create service account.png)
+  * Click on Create Service account
+![test](image/create_service_account.png)
+  * choose a name of your choice, then create and continue
+![test](image/name.png)
+  * Select Role. Since we will be using this service account for the project, then we will select all the roles that will be needed.
+    * BigQuery Admin
+    * Compute Admin
+    * Storage Admin
+  * Skip granting additional users access, and click "Done".
+
+After you create your service account, download your service account key.
+
+* Select your service account from the list.
+* Select the "Keys" tab.
+* In the drop down menu, select "Create new key".
+* Leave the "Key Type" as JSON.
+* Click "Create" to create the key and save the key file to your system.
+
+#### Creating GCP infrasture with Terraform
+* create a directory `mkdir gcp-terraform`
+* enter into the directory `cd gcp-terraform`
+* create a new file `touch main.tf` and copy the content of [main.tf](./main.tf) into it
+* copy the filepath of your service key account and paste it in the `filepath.json` in the `main.tf` files
+  ![show](image/filepath.png)
+* create another file in the same directory `touch variables.tf` and copy the content of [variables.tf](./variables.tf) into it
+* Configure the variables in `variables.tf`
+  ![show](image/variables.png)
+
+  * set your project_id, region, BQ_DATASET, cloud_storage, compute_instance
+
+* open terminal and run `terraform init` to initialize files. This might take a few mins. 
+  ![show](image/terraform_init.png)
+* run `terraform plan` to see the infrastructure to be created.
+* run `terraform apply` to create the infrasture. a prompt will be ask, type `yes` to preceed.
+  ![show](image/terraform_apply.png)
+
+You have successfully created a compute engine, a cloud storage bucket and a bigquery warehouse. run `terraform show` to see the configurations.
+
+* to destroy the infrasture, run `terraform destroy` and wait a few mins.
+  ![show](image/terraform_destroy.png)
