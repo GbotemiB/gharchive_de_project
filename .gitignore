@@ -10,6 +10,10 @@
 .gsutil
 .config
 .prefectignore
+*.terraform
+*.hcl
+*.tfstate
+*.backup
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
