@@ -1,0 +1,4 @@
+prefect==2.7.11
+prefect-gcp[cloud_storage]
+fastparquet
+pyarrow
