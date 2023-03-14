@@ -96,4 +96,14 @@ app.prefect.cloud
 * create a prefect cloud account
 * create a workspace
 * to set api keys, go to [my profile](https://app.prefect.cloud/my/profile), click on `API Keys`, create api key, name the api key `login`, copy the key securely.
+
+* go back to terminal on the vm, run the next command to install the requirement to run prefect
+    ```
+    pip install -r requirements.txt
+    ```
+    to authenticate with prefect cloud, run
+    ```
+    prefect cloud login
+    ```
+* creating Blocks in prefect
 * pnu_tK1tYE1aCkK8E7y8rWVcNCGUg47XUg0mU5T4
