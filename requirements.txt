@@ -1,5 +1,8 @@
 pandas
 prefect==2.7.11
 prefect-gcp[cloud_storage]
+prefect-docker
+prefect-github
+prefect-dbt[bigquery]
 fastparquet
 pyarrow

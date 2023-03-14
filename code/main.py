@@ -3,6 +3,9 @@ import pandas as pd
 from ingest_pyspark import main as ingest
 from gcs_to_bq_pyspark import execute
 
+from prefect_dbt.cloud import DbtCloudJob
+from prefect_dbt.cloud.jobs import run_dbt_cloud_job
+
 
 @flow()
 def pipeline(year: int, months: list, days=None):
@@ -22,14 +25,7 @@ def pipeline(year: int, months: list, days=None):
                 ingest(year, month, day)
                 execute(year, month)
 
-        """ try:
-            for day in days:
-                ingest(year, month, day)
-                execute(year, month)
-        except FileNotFoundError:
-            print("no more data")
-            pass
- """
+    #run dbt cloud
 
 if __name__=="__main__":
     year = 2015
