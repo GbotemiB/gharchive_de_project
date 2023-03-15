@@ -11,8 +11,7 @@ tags: []
 parameters: {}
 schedule: null
 is_schedule_active: null
-infra_overrides:
-  env.EXTRA_PIP_PACKAGES: pandas pyspark
+infra_overrides: {}
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -22,11 +21,11 @@ manifest_path: null
 infrastructure:
   type: docker-container
   env:
-    EXTRA PIP PACKAGES: prefect==2.8.5
+    EXTRA PIP PACKAGES: pandas pyspark
   labels: {}
   name: null
   command: null
-  image: bitnami/spark:3.3.2-debian-11-r2
+  image: prefecthq/prefect:2.8.5-python3.8
   image_pull_policy: null
   image_registry: null
   networks: []
@@ -74,4 +73,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-15T22:14:45.813638+00:00'
+timestamp: '2023-03-15T22:39:26.226255+00:00'
