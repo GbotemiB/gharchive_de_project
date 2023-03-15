@@ -4,9 +4,6 @@ from ingest_pyspark import main as ingest
 from gcs_to_bq_pyspark import execute
 from dbt_run import run_dbt_job
 
-from prefect_dbt.cloud import DbtCloudJob
-from prefect_dbt.cloud.jobs import run_dbt_cloud_job
-
 
 @flow()
 def pipeline(year: int, months: list, days=None):

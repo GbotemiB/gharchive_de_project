@@ -3,16 +3,16 @@
 ###
 name: deployment_flow
 description: null
-version: 3058b2ab4267d946e98a113c940b2b9a
+version: cf6a2bcfde05c4702f1aacd1887eae0e
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: null
+work_pool_name: default-agent-pool
 tags: []
 parameters: {}
 schedule: null
-is_schedule_active: null
+is_schedule_active: true
 infra_overrides:
-  env.EXTRA_PIP_PACKAGES: pandas
+  env.EXTRA_PIP_PACKAGES: prefect
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -22,11 +22,11 @@ manifest_path: null
 infrastructure:
   type: docker-container
   env:
-    EXTRA PIP PACKAGES: pandas==1.5.3
+    EXTRA PIP PACKAGES: prefect==2.8.5
   labels: {}
   name: null
   command: null
-  image: prefecthq/prefect:2.3.2-python3.8
+  image: bitnami/spark:3.3.2-debian-11-r2
   image_pull_policy: null
   image_registry: null
   networks: []
@@ -74,4 +74,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-14T19:03:15.820312+00:00'
+timestamp: '2023-03-15T21:50:00.058971+00:00'
