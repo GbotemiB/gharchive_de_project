@@ -12,7 +12,7 @@ parameters: {}
 schedule: null
 is_schedule_active: null
 infra_overrides:
-  env.EXTRA_PIP_PACKAGES: pyspark
+  env.EXTRA_PIP_PACKAGES: pandas, pyspark
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
