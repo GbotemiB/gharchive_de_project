@@ -6,12 +6,13 @@ description: null
 version: cf6a2bcfde05c4702f1aacd1887eae0e
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: null
+work_pool_name: default-agent-pool
 tags: []
 parameters: {}
 schedule: null
-is_schedule_active: null
-infra_overrides: {}
+is_schedule_active: true
+infra_overrides:
+  env.EXTRA_PIP_PACKAGES: '[pandas pyspark]'
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -73,4 +74,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-15T22:39:26.226255+00:00'
+timestamp: '2023-03-15T22:43:56.911979+00:00'
