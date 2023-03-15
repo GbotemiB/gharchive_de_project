@@ -12,7 +12,7 @@ parameters: {}
 schedule: null
 is_schedule_active: true
 infra_overrides:
-  env.EXTRA_PIP_PACKAGES: '[pandas pyspark]'
+  env.EXTRA_PIP_PACKAGES: pandas pyspark
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -74,4 +74,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-15T22:43:56.911979+00:00'
+timestamp: '2023-03-15T22:46:43.477613+00:00'
