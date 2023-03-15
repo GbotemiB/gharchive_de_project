@@ -11,7 +11,8 @@ tags: []
 parameters: {}
 schedule: null
 is_schedule_active: null
-infra_overrides: {}
+infra_overrides:
+  env.EXTRA_PIP_PACKAGES: pandas
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -25,7 +26,7 @@ infrastructure:
   labels: {}
   name: null
   command: null
-  image: prefecthq/prefect:2.7.11-python3.8
+  image: prefecthq/prefect:2.3.2-python3.8
   image_pull_policy: null
   image_registry: null
   networks: []
@@ -73,4 +74,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-14T17:12:57.411572+00:00'
+timestamp: '2023-03-14T19:03:15.820312+00:00'

@@ -2,6 +2,7 @@ from prefect import task, flow
 import pandas as pd
 from ingest_pyspark import main as ingest
 from gcs_to_bq_pyspark import execute
+from dbt_run import run_dbt_job
 
 from prefect_dbt.cloud import DbtCloudJob
 from prefect_dbt.cloud.jobs import run_dbt_cloud_job
@@ -26,6 +27,7 @@ def pipeline(year: int, months: list, days=None):
                 execute(year, month)
 
     #run dbt cloud
+    run_dbt_job()
 
 if __name__=="__main__":
     year = 2015
