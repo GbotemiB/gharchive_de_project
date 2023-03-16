@@ -68,7 +68,7 @@ export JAVA_HOME="${HOME}/spark/jdk-11.0.1"
 export PATH="${JAVA_HOME}/bin:${PATH}"
 
 export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
-export PATH="${SPARK_HOME}/bin:${PATH}
+export PATH="${SPARK_HOME}/bin:${PATH}"
 ```
 after exiting, 
 logout and login back into the session to effect the changes or run `source ~/.bashrc`
@@ -95,6 +95,7 @@ git clone https://github.com/GbotemiB/gharchive_DE_project/
 app.prefect.cloud
 * create a prefect cloud account
 * create a workspace
+  ![show](images/prefect.png)
 * to set api keys, go to [my profile](https://app.prefect.cloud/my/profile), click on `API Keys`, create api key, name the api key `login`, copy the key securely.
 
 * go back to terminal on the vm, run the next command to install the requirement to run prefect
@@ -105,5 +106,59 @@ app.prefect.cloud
     ```
     prefect cloud login
     ```
-* creating Blocks in prefect
-* pnu_tK1tYE1aCkK8E7y8rWVcNCGUg47XUg0mU5T4
+    choose `Paste an API key`
+* blocks are available on prefect cloud. if you are running prefect locally, you might need to add the blocks 
+  ```
+  prefect block register -m prefect_gcp
+  prefect block register -m prefect_github
+  prefect block register -m prefect_dbt
+  prefect block register -m prefect_docker
+  ```
+* configure gcp bucket block
+  ![show](images/prefect_block.png)
+  * click the + to configure a block
+  * go to GCS Bucket
+  * name the block `gharchive`
+  * get your gcp bucket name that was created in terraform setup. use it for the name of the bucket `gharchive-data`
+  * scroll down to Gcp Credentials to add credentials. Click `Add +` to add gcp credentials.
+  * let the name of the block name be `gcp-creds`
+  * the api key that was downloaded when setting up GCP. copy the contents to `Service Account Info (Optional)` and save it.
+  * the credential will be added to the gcp block automatically. click save
+  ![show](images/prefect_gcp.png)
+  * creating docker container block. go back to blocks and search for docker container. Name the block as `gharchive-container`
+  ![show](images/docker_container.png)
+  * create a link to dbt readme, then continue setup for dbtcloud credentials. create a DbtCloudCredentials. Name the block as `dbt-gharchive`. paste your account ID. The api access key can be gotten from your dbt settings. copy it and paste it in DbtCloudCredentials block. Then save it.
+  ![show](images/dbtcloudcredential.png)
+  * go to `main/dbt_run.py` to input your job_id. replace your job_id in the job_id variable. 
+* github block
+  * search github in blocks, add it, enter the reference as main, the repository will be `https://github.com/GbotemiB/gharchive_DE_project`
+  ![show](images/prefect_github.png)
+  * go back to terminal to configure deployment and run the following commands.
+  
+    ```
+    prefect deployment build code/main.py:pipeline \
+      -n "deployment flow" \
+      -o "deployment_flow" \
+      -sb github/gharchive-github \
+      --apply
+    ```
+
+    ```
+    prefect agent start -q 'default'
+    ```
+    ![show](images/prefect_deployment.png)
+    ![show](images/parameters.png)
+
+    * visit app.prefect.cloud to run deployment. go to the deployment tab. the newly created tab should appear. Click on run to create a custom run. For testing, set the year parameter to a year e.g 2020; set the month to take just a single month in a list e.g [1] which means January; set the day to any day of the month e.g 1 which means the first day. Note if the day parameter is not set, this will run for every day in the chosen month.
+    * the prefect flow run can be monitored from the terminal session running prefect agent. 
+
+### Visualization
+* visit [Google Looker Studio](https://lookerstudio.google.com/)
+* create a datasource, select bigquery as source. select your project_ID, then select production dataset, select the `gh table`, then select connect on the right top corner. 
+* You can have fun creating any dashboard of your choice.
+  
+
+when you are done, dont forget to tear down the infrastructure with `terraform destroy`
+  
+
+
