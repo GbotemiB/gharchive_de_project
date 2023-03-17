@@ -1,0 +1,6 @@
+repos:
+-   repo: https://github.com/pre-commit/mirrors-isort
+    rev: f0001b2  # Use the revision sha / tag you want to point at
+    hooks:
+    -   id: isort
+        args: ["--profile", "black"]

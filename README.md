@@ -20,11 +20,11 @@ This is a  Data Enginerering Project using [Github Archive data](https://www.gha
     - [Visualization](#visualization)
 
 ## Problem Description
-This project is about events that happens on [Github](https://www.github.com/). How many users are currently in the Github space? Which repo is the most contributed to? Who has the highest commits? What time of the day or month does users push commits the most? 
+This project is about events that happens on [Github](https://www.github.com/). How many users are currently in the Github space? Which repo is the most contributed to? Who has the highest commits? What time of the day or month does users push commits the most?
 
 The Main Objective is to :
 * Develop a pipeline to collect the github archive data and process it in batch
-* Build a dashboard to visualize the trends 
+* Build a dashboard to visualize the trends
 
 ## Technologies
 * Cloud: GCP
@@ -41,7 +41,7 @@ The data pipeline involves the following:
 * preprocessing the data with pyspark and moving it to DWH
 * transforming and preparing the data in the DWH for visualization
 * creating dashboards
-  
+
 ![show](images/arch%20.jpg)
 
 ## Dashboard
@@ -61,7 +61,7 @@ create a directory for the installation and enter the directory
 ```
 mkdir spark && cd spark
 ```
-```shell
+```
 wget https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 ```
 extract the file
@@ -79,7 +79,7 @@ tar xzfv spark-3.3.2-bin-hadoop3.tgz
 
 to add the java and spark to path
 ```
-nano ./bashrc 
+nano ./bashrc
 ```
 scroll to the bottom and add the following
 ```
@@ -89,7 +89,7 @@ export PATH="${JAVA_HOME}/bin:${PATH}"
 export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
 export PATH="${SPARK_HOME}/bin:${PATH}"
 ```
-after exiting, 
+after exiting,
 logout and login back into the session to effect the changes or run `source ~/.bashrc`
 
 ### Docker
@@ -148,24 +148,24 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
     * creating docker container block. go back to blocks and search for docker container. Name the block as `gharchive-container`
     ![show](images/docker_container.png)
   #### Github block
-    * search github in blocks and add it. Enter the repository as the forked repo. 
+    * search github in blocks and add it. Enter the repository as the forked repo.
     * Enter reference as main.
       ![show](images/prefect_github.png)
 ### DBT Cloud
   * Setup DbtCloud [here](/dbt/README.md).
-  * To setup dbtcloud credentials block on prefect. 
-    * create a DbtCloudCredentials. 
-    * Name the block as `dbt-gharchive`. 
-    * paste your account ID. 
+  * To setup dbtcloud credentials block on prefect.
+    * create a DbtCloudCredentials.
+    * Name the block as `dbt-gharchive`.
+    * paste your account ID.
     * The api access key can be gotten from your dbt settings. copy it and paste it in DbtCloudCredentials block. Then save it.
   ![show](images/dbtcloudcredential.png)
-  * go to `main/dbt_run.py` to input your job_id. replace your job_id in the job_id variable. 
+  * go to `main/dbt_run.py` to input your job_id. replace your job_id in the job_id variable.
 
-  
-  
+
+
   * ### Deployment
   * Go back to terminal to configure deployment and run the following commands.
-  
+
     ```
     prefect deployment build code/main.py:pipeline \
       -n "deployment flow" \
@@ -173,39 +173,39 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
       -sb github/gharchive-github \
       --apply
     ```
-     - the -n parameter set the name of the deployment in prefect. 
-     - the -o parameter set the output of the file. 
-     - the -sb parameter set the storage block. 
+     - the -n parameter set the name of the deployment in prefect.
+     - the -o parameter set the output of the file.
+     - the -sb parameter set the storage block.
      - the --apply parameter apply the deployment file to prefect.
 
     ```
     prefect agent start -q 'default'
     ```
-  
+
     ![show](images/parameters.png)
 
-    * Visit [Prefect Cloud](https://app.prefect.cloud) to run deployment. 
+    * Visit [Prefect Cloud](https://app.prefect.cloud) to run deployment.
     * Go to the deployment tab. the newly created deployment should appear under the deployment tab.
-    * Click on run to create a custom run. For test purposes, 
-      - set the year parameter to a year e.g 2020; 
-      - set the month to take just a single month in a list e.g [1] which means January; 
+    * Click on run to create a custom run. For test purposes,
+      - set the year parameter to a year e.g 2020;
+      - set the month to take just a single month in a list e.g [1] which means January;
       - set the day to any day of the month e.g 1 which means the first day. Note if the day parameter is not set, this will run for every day in the chosen month.
-    * the prefect flow run can be monitored from the terminal session running prefect agent. 
+    * the prefect flow run can be monitored from the terminal session running prefect agent.
 
 ### Visualization
 * visit [Google Looker Studio](https://lookerstudio.google.com/)
 * create a datasource.
-* select bigquery as source. 
-* select your project_ID. 
-* select production dataset. 
+* select bigquery as source.
+* select your project_ID.
+* select production dataset.
 * select the `gh table`.
-* select connect on the right top corner. 
+* select connect on the right top corner.
   ![show](images/looker.png)
 * You can have fun creating any dashboard of your choice.
-  
+
 
 when you are done, dont forget to tear down the infrastructure with `terraform destroy`
-  
+
 
 
 
