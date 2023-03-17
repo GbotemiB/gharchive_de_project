@@ -10,14 +10,3 @@ repos:
     hooks:
     -   id: isort
         args: ["--profile", "black"]
--   repo: https://github.com/psf/black
-    rev: 20.8b1
-    hooks:
-    -   id: black
--   repo: local
-    hooks:
-    -   id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]

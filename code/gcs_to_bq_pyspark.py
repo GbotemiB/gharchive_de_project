@@ -29,14 +29,12 @@ def config():
     hadoop_conf = sc._jsc.hadoopConfiguration()
 
     hadoop_conf.set(
-        "fs.AbstractFileSystem.gs.impl",
-        "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS"
+        "fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS"
     )
     hadoop_conf.set(
         "fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem"
     )
-    hadoop_conf.set("fs.gs.auth.service.account.json.keyfile",
-                    credentials_location)
+    hadoop_conf.set("fs.gs.auth.service.account.json.keyfile", credentials_location)
     hadoop_conf.set("fs.gs.auth.service.account.enable", "true")
 
     # creating spark session
@@ -91,13 +89,11 @@ def write_to_bq(df, project_ID: str, project_dataset: str, table: str) -> None:
     """
     this will write the dataframe to bigquery
     """
-    df.write \
-        .format("bigquery") \
-        .mode("append") \
-        .option("writeMethod", "direct") \
-        .option("partitionBy", "created_at") \
-        .option("partitionField", "created_at") \
-        .save(f"{project_ID}.{project_dataset}.{table}")
+    df.write.format("bigquery").mode("append").option("writeMethod", "direct").option(
+        "partitionBy", "created_at"
+    ).option("partitionField", "created_at").save(
+        f"{project_ID}.{project_dataset}.{table}"
+    )
 
     print("data write to bigquery successful")
 
@@ -117,10 +113,7 @@ def execute(year: int, month: int):
     spark = config()
     data = read_data_from_gcs(path)
     write_to_bq(
-        df=data,
-        project_ID=project_ID,
-        project_dataset=project_dataset,
-        table=table
+        df=data, project_ID=project_ID, project_dataset=project_dataset, table=table
     )
     spark.stop()
 
