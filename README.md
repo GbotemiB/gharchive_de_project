@@ -181,7 +181,7 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
     ```
     prefect agent start -q 'default'
     ```
-    ![show](images/prefect_deployment.png)
+  
     ![show](images/parameters.png)
 
     * Visit [Prefect Cloud](https://app.prefect.cloud) to run deployment. 
@@ -194,7 +194,13 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
 
 ### Visualization
 * visit [Google Looker Studio](https://lookerstudio.google.com/)
-* create a datasource, select bigquery as source. select your project_ID, then select production dataset, select the `gh table`, then select connect on the right top corner. 
+* create a datasource.
+* select bigquery as source. 
+* select your project_ID. 
+* select production dataset. 
+* select the `gh table`.
+* select connect on the right top corner. 
+  ![show](images/looker.png)
 * You can have fun creating any dashboard of your choice.
   
 
