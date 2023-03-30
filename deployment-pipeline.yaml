@@ -1,53 +1,39 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'pipeline'
 ###
-name: deployment_flow
+name: deployment-pipeline
 description: null
-version: cf6a2bcfde05c4702f1aacd1887eae0e
+version: ebcb971732022610968c57aa2dd74fae
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: default-agent-pool
+work_pool_name: null
 tags: []
 parameters: {}
 schedule: null
-is_schedule_active: true
-infra_overrides:
-  env.EXTRA_PIP_PACKAGES: prefect
+is_schedule_active: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
 ###
 flow_name: pipeline
 manifest_path: null
-infrastructure:
-  type: docker-container
-  env:
-    EXTRA PIP PACKAGES: prefect==2.8.5
-  labels: {}
-  name: null
-  command: null
-  image: bitnami/spark:3.3.2-debian-11-r2
-  image_pull_policy: null
-  image_registry: null
-  networks: []
-  network_mode: null
-  auto_remove: false
-  volumes: []
-  stream_output: true
-  memswap_limit: null
-  mem_limit: null
-  privileged: false
-  _block_document_id: d4db2ed1-fd74-4239-94fd-d1eaca75f4d5
-  _block_document_name: gharchive-container
-  _is_anonymous: false
-  block_type_slug: docker-container
-  _block_type_slug: docker-container
 storage:
   repository: https://github.com/GbotemiB/gharchive_DE_project
-  reference: main
+  reference: null
   access_token: null
   include_git_objects: true
-  _block_document_id: b73c209f-40a6-41eb-8961-b57658060be6
+  _block_document_id: a37560a3-45f1-47bf-ab02-3425f13abef1
   _block_document_name: gharchive-github
   _is_anonymous: false
   block_type_slug: github
@@ -74,4 +60,4 @@ parameter_openapi_schema:
   - year
   - months
   definitions: null
-timestamp: '2023-03-15T21:50:00.058971+00:00'
+timestamp: '2023-03-30T04:56:39.568244+00:00'
