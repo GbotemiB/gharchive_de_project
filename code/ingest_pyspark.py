@@ -1,4 +1,7 @@
 import os
+
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--master local[2] pyspark-shell'
+
 from pathlib import Path
 
 from prefect import task, flow
@@ -10,12 +13,12 @@ from pyspark.context import SparkContext
 
 def config():
 
-    credentials_location = '/home/gbotemi/credentials/credentials.json'
+    credentials_location = '/credentials/credentials.json'
 
     conf = SparkConf() \
         .setMaster('local[*]') \
         .setAppName('test') \
-        .set("spark.jars", "/home/gbotemi/lib/gcs-connector-hadoop3-2.2.5.jar, /home/gbotemi/lib/spark-3.2-bigquery-0.29.0-preview.jar") \
+        .set("spark.jars.packages", "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.2") \
         .set("spark.hadoop.google.cloud.auth.service.account.enable", "true") \
         .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", credentials_location) \
         .set("spark.executor.memory", "8g") \
