@@ -8,11 +8,11 @@ This contains instruction on how to create a Google cloud storage, Google storag
 1. What is [Terraform](https://www.terraform.io)?
    * open-source tool by [HashiCorp](https://www.hashicorp.com), used for provisioning infrastructure resources
    * supports DevOps best practices for change management
-   * Managing configuration files in source control to maintain an ideal provisioning state 
+   * Managing configuration files in source control to maintain an ideal provisioning state
      for testing and production environments
 2. What is IaC?
    * Infrastructure-as-Code
-   * build, change, and manage your infrastructure in a safe, consistent, and repeatable way 
+   * build, change, and manage your infrastructure in a safe, consistent, and repeatable way
      by defining resource configurations that you can version, reuse, and share.
 3. Some advantages
    * Infrastructure lifecycle management
@@ -36,7 +36,7 @@ To verify your installation, run `terraform -help`
 #### Setting up GCP
 * A GCP project. [create one here](https://console.cloud.google.com/projectcreate). Keep note of your Project ID. it should look like this `PROJECT_NAME-453233`
 * Enable Compute Engine for your project in the [GCP Console](https://console.developers.google.com/apis/library/compute.googleapis.com)
-* [Create a Service Account key](https://console.cloud.google.com/apis/credentials/serviceaccountkey). This will used throughout the entire project. 
+* [Create a Service Account key](https://console.cloud.google.com/apis/credentials/serviceaccountkey). This will used throughout the entire project.
   * Select the project you created in the previous step
   * Navigate to the [IAM section](https://console.cloud.google.com/iam-admin/serviceaccounts)
   * Click on Create Service account
@@ -69,7 +69,7 @@ After you create your service account, download your service account key.
 
   * set your project_id, region, BQ_DATASET, cloud_storage, compute_instance
 
-* open terminal and run `terraform init` to initialize files. This might take a few mins. 
+* open terminal and run `terraform init` to initialize files. This might take a few mins.
   ![show](image/terraform_init.png)
 * run `terraform plan` to see the infrastructure to be created.
 * run `terraform apply` to create the infrasture. a prompt will be ask, type `yes` to preceed.
@@ -79,3 +79,5 @@ You have successfully created a compute engine, a cloud storage bucket and a big
 
 * to destroy the infrasture, run `terraform destroy` and wait a few mins.
   ![show](image/terraform_destroy.png)
+
+continue setup [here](../README.md)
