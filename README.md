@@ -10,7 +10,6 @@ This is a  Data Enginerering Project using [Github Archive data](https://www.gha
   - [Setup](#setup)
     - [Terraform](#terraform)
     - [Java runtime and Spark](#java-runtime-and-spark)
-    - [Docker](#docker)
     - [Github repo](#github-repo)
     - [Prefect](#prefect)
       - [GCP bucket block](#gcp-bucket-block)
@@ -55,6 +54,7 @@ Instructions to setup Terraform and GCP infrastruture [click here](terraform/REA
 
 login into the google compute instance using ssh. to setup gcp with vscode [click here](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=13)
 
+Note: The following instructions does not use docker to run the ochestration. To use docker [click here](docker.md)
 ### Java runtime and Spark
 create a directory for the installation and enter the directory
 ```
@@ -91,19 +91,6 @@ export PATH="${SPARK_HOME}/bin:${PATH}"
 after exiting,
 logout and login back into the session to effect the changes or run `source ~/.bashrc`
 
-### Docker
-
-```
-sudo apt install docker.io
-```
-to run doocker without sudo
-
-```
-sudo groupadd docker
-sudo usermod -aG docker $USER
-```
-
-logout and login back, then run `docker run hello-world` to test the installation.
 
 ### Github repo
 Go to this [repo](https://github.com/GbotemiB/gharchive_DE_project/), fork it and clone the forked repo
