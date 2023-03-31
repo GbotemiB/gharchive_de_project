@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  ### Prefect Orion API
+  orion:
+    image: spark:v1
+    restart: always
+    volumes:
+      - prefect:/.prefect
+
+volumes:
+  prefect:
