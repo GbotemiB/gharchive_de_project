@@ -14,7 +14,6 @@ This is a  Data Enginerering Project using [Github Archive data](https://www.gha
     - [Github repo](#github-repo)
     - [Prefect](#prefect)
       - [GCP bucket block](#gcp-bucket-block)
-      - [Docker bucket block](#docker-bucket-block)
       - [Github block](#github-block)
     - [DBT Cloud](#dbt-cloud)
     - [Visualization](#visualization)
@@ -144,9 +143,6 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
      * the api key that was downloaded when setting up GCP. copy the contents to `Service Account Info (Optional)` and save it.
      * the credential will be added to the gcp block automatically. click save
      ![show](images/prefect_gcp.png)
-  #### Docker bucket block
-    * creating docker container block. go back to blocks and search for docker container. Name the block as `gharchive-container`
-    ![show](images/docker_container.png)
   #### Github block
     * search github in blocks and add it. Enter the repository as the forked repo.
     * Enter reference as main.
