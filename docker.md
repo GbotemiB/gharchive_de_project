@@ -12,8 +12,9 @@ sudo usermod -aG docker $USER
 
 logout and login back, then run `docker run hello-world` to test the installation.
 
-Setup Prefect account [here](https://github.com/GbotemiB/gharchive_de_project#prefect)
-create `prefect_key.txt` file and save your prefect api key inside.
+- Setup Prefect account [here](https://github.com/GbotemiB/gharchive_de_project#prefect). When you get to the deployment part, dont start the agent.
+
+- create `prefect_key.txt` file and save your prefect api key inside.
 
 To get your workspace details, go to [prefect](https://app.prefect.cloud), go to workspace settings.
 ![here](images/docker.png)
