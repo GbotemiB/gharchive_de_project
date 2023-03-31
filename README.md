@@ -44,6 +44,7 @@ The data pipeline involves the following:
 
 ## Dashboard
 ![show](images/results.png)
+[click here](https://lookerstudio.google.com/reporting/e3e5216b-45c4-48c7-8bdd-d65ab5431177) to see the dashboard
 
 ## Setup
 
