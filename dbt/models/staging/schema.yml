@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: staging
-    database: gharchive-379414
-    schema: gharchive_data
+    database: onyx-nexus-382423
+    schema: gharchive_dataset
     
 
     tables:
