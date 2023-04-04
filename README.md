@@ -99,21 +99,20 @@ Go to this [repo](https://github.com/GbotemiB/gharchive_DE_project/), fork it an
 
 ### Prefect
 We will running prefect locally here.
-* run `prefect orion start` to start prefect server.
-* open another terminal session and run `prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api`.
 * go back to terminal on the vm, run the next command to install the requirement to run prefect.
-  run `sudo apt install python3-pip` to install pip package manager. Then change directory into the cloned repo, then run the following.
+  run `sudo apt update && sudo apt install python3-pip` to install pip package manager. Then change directory into the cloned repo, then run the following.
 
     ```
     pip install -r requirements.txt
     ```
-    then run `sudo reboot now` to reboot vm instance or `source ~/.bashrc` to effect installation.
+    then run `sudo reboot now` to reboot vm instance to effect installation.
+* run `prefect orion start` to start prefect server.
+* open another terminal session and run `prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api`.
+
 * The following block needs to be added.
   ```
   prefect block register -m prefect_gcp
-  prefect block register -m prefect_github
   prefect block register -m prefect_dbt
-  prefect block register -m prefect_docker
   ```
 * configuring prefect blocks. blocks can be configured with scripts or through the Prefect UI. The blocks will be configured via the UI.
   #### GCP bucket block
