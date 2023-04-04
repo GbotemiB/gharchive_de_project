@@ -13,8 +13,8 @@ This is a  Data Enginerering Project using [Github Archive data](https://www.gha
     - [Github repo](#github-repo)
     - [Prefect](#prefect)
       - [GCP bucket block](#gcp-bucket-block)
-      - [Github block](#github-block)
     - [DBT Cloud](#dbt-cloud)
+    - [Deployment](#deployment)
     - [Visualization](#visualization)
 
 ## Problem Description
@@ -48,7 +48,7 @@ The data pipeline involves the following:
 
 ## Setup
 
-To setup this project, [GCP account](https://cloud.google.com/) will be required.
+To setup this project, [GCP account](https://cloud.google.com/) will be required. Activate your free trial with free $300 credit. select other when choosing what best describes your needs.
 
 ### Terraform
 Instructions to setup Terraform and GCP infrastruture [click here](terraform/README.md)
@@ -57,6 +57,7 @@ login into the google compute instance using ssh. to setup gcp with vscode [clic
 
 Note: The following instructions does not use docker to run the ochestration. To use docker [click here](docker.md)
 ### Java runtime and Spark
+connect to your vm instance via vscode and continue.
 create a directory for the installation and enter the directory
 ```
 mkdir spark && cd spark
@@ -79,7 +80,7 @@ tar xzfv spark-3.3.2-bin-hadoop3.tgz
 
 to add the java and spark to path
 ```
-nano ./bashrc
+nano ~/.bashrc
 ```
 scroll to the bottom and add the following
 ```
@@ -97,22 +98,17 @@ logout and login back into the session to effect the changes or run `source ~/.b
 Go to this [repo](https://github.com/GbotemiB/gharchive_DE_project/), fork it and clone the forked repo
 
 ### Prefect
-If you are familar with prefect, you can decide to use prefect locally. But Prefect Cloud will be used.
-* create a [prefect cloud account](https://app.prefect.cloud)
-* create a workspace
-  ![show](images/prefect.png)
-* to set api keys, go to [my profile](https://app.prefect.cloud/my/profile), click on `API Keys`, create api key, name the api key `login`, copy the key securely.
+We will running prefect locally here.
+* run `prefect orion start` to start prefect server.
+* open another terminal session and run `prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api`.
+* go back to terminal on the vm, run the next command to install the requirement to run prefect.
+  run `sudo apt install python3-pip` to install pip package manager. Then change directory into the cloned repo, then run the following.
 
-* go back to terminal on the vm, run the next command to install the requirement to run prefect
     ```
     pip install -r requirements.txt
     ```
-    to authenticate with prefect cloud, run
-    ```
-    prefect cloud login
-    ```
-    choose `Paste an API key`
-* blocks are available on prefect cloud. if you are running prefect locally, you might need to add the blocks by running the following commands in terminal.
+    then run `sudo reboot now` to reboot vm instance or `source ~/.bashrc` to effect installation.
+* The following block needs to be added.
   ```
   prefect block register -m prefect_gcp
   prefect block register -m prefect_github
@@ -125,16 +121,12 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
      * click the + to configure a block
      * go to GCS Bucket
      * name the block `gharchive`
-     * get your gcp bucket name that was created in terraform setup. use it for the name of the bucket `gharchive-data`
+     * get your gcp bucket name that was created in terraform setup. use it for the name of the bucket `gharchive_dataset_gcs`
      * scroll down to Gcp Credentials to add credentials. Click `Add +` to add gcp credentials.
      * let the name of the block name be `gcp-creds`
      * the api key that was downloaded when setting up GCP. copy the contents to `Service Account Info (Optional)` and save it.
      * the credential will be added to the gcp block automatically. click save
      ![show](images/prefect_gcp.png)
-  #### Github block
-    * search github in blocks and add it. Enter the repository as the forked repo.
-    * Enter reference as main.
-      ![show](images/prefect_github.png)
 ### DBT Cloud
   * Setup DbtCloud [here](/dbt/README.md).
   * To setup dbtcloud credentials block on prefect.
@@ -143,18 +135,22 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
     * paste your account ID.
     * The api access key can be gotten from your dbt settings. copy it and paste it in DbtCloudCredentials block. Then save it.
   ![show](images/dbtcloudcredential.png)
-  * go to `main/dbt_run.py` to input your job_id. replace your job_id in the job_id variable.
+  * go to `code/dbt_run.py` to input your job_id. replace your job_id in the job_id variable.
 
 
 
-  * ### Deployment
-  * Go back to terminal to configure deployment and run the following commands.
+  ### Deployment
+  * Go back to terminal to configure deployment 
+  * change directory into the clone repo folder and running the following.
+    ```
+    export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+    export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
+    ```
 
     ```
     prefect deployment build code/main.py:pipeline \
-      -n "deployment flow" \
-      -o "deployment_flow" \
-      -sb github/gharchive-github \
+      -n "pipeline flow" \
+      -o "pipeline flow" \
       --apply
     ```
      - the -n parameter set the name of the deployment in prefect.
@@ -168,7 +164,7 @@ If you are familar with prefect, you can decide to use prefect locally. But Pref
 
     ![show](images/parameters.png)
 
-    * Visit [Prefect Cloud](https://app.prefect.cloud) to run deployment.
+    * Visit [Prefect](http://127.0.0.1:4200/) to run deployment.
     * Go to the deployment tab. the newly created deployment should appear under the deployment tab.
     * Click on run to create a custom run. For test purposes,
       - set the year parameter to a year e.g 2020;
