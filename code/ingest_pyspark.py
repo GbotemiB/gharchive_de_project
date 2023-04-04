@@ -67,7 +67,7 @@ def convert_and_save_parquet(path, year: int, month: int, day: int):
     # print(df.count())
 
     df.write.parquet(
-        f"gs://gharchive-data/pq/{year}/{month:02}/{day:02}", mode="overwrite"
+        f"gs://gharchive_dataset_gcs/pq/{year}/{month:02}/{day:02}", mode="overwrite"
     )
     print("write to parquet successful")
 

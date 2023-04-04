@@ -104,9 +104,9 @@ def execute(year: int, month: int):
     this is the execution function on all the operations
     """
 
-    path = f"gs://gharchive-data/pq/{year}/{month:02}/*/*"
-    project_ID = "gharchive-379414"
-    project_dataset = "gharchive_data"
+    path = f"gs://gharchive_dataset_gcs/pq/{year}/{month:02}/*/*"
+    project_ID = "onyx-nexus-382423"
+    project_dataset = "gharchive_dataset"
     table = f"{year}"
 
     global spark
