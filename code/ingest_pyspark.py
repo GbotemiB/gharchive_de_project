@@ -1,17 +1,20 @@
 import os
-
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--master local[2] pyspark-shell'
 
 from pathlib import Path
 
 from prefect import flow, task
+from prefect_gcp import GcpCredentials
+
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 from pyspark.sql import SparkSession
 
 
 def config():
-    credentials_location = "credentials/credentials.json"
+
+    credentials_location = GcpCredentials.load("gcp-creds")
+    # credentials_location = "credentials/credentials.json"
 
     conf = (
         SparkConf()

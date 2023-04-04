@@ -14,6 +14,7 @@ This is a  Data Enginerering Project using [Github Archive data](https://www.gha
     - [Prefect](#prefect)
       - [GCP bucket block](#gcp-bucket-block)
     - [DBT Cloud](#dbt-cloud)
+    - [Credentials](#credentials)
     - [Deployment](#deployment)
     - [Visualization](#visualization)
 
@@ -135,6 +136,9 @@ We will running prefect locally here.
     * The api access key can be gotten from your dbt settings. copy it and paste it in DbtCloudCredentials block. Then save it.
   ![show](images/dbtcloudcredential.png)
   * go to `code/dbt_run.py` to input your job_id. replace your job_id in the job_id variable.
+### Credentials
+  * go to the credentials folder and create `credentials.json` file.
+  * copy the google credentials details into it and save it.
 
 
 
