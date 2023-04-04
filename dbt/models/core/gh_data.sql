@@ -1,23 +1,10 @@
 {{ config(materialized="table") }}
 
-with gh_2015_data as (
+
+with gh_data as (
     select 
-        *
-    from {{ ref("stg_2015_data") }}
-
-),
-
-gh_2020_data as (
-    select 
-        *
-    from {{ ref("stg_2020_data") }}
-
-),
-
-gh_data as (
-    select * from gh_2015_data
-    UNION ALL
-    select * from gh_2020_data
+        * 
+    from {{ ref("stg_github") }}
 )
 
 select
