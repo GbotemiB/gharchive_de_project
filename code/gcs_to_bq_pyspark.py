@@ -6,7 +6,7 @@ from pyspark.sql.functions import col, split, when
 
 
 def config():
-    credentials_location = "/credentials/credentials.json"
+    credentials_location = "credentials/credentials.json"
 
     conf = (
         SparkConf()
@@ -14,8 +14,8 @@ def config():
         .setAppName("test")
         .set(
             "spark.jars",
-            "/lib/gcs-connector-hadoop3-2.2.5.jar, \
-            /lib/spark-3.2-bigquery-0.29.0-preview.jar",
+            "lib/gcs-connector-hadoop3-2.2.5.jar, \
+            lib/spark-3.2-bigquery-0.29.0-preview.jar",
         )
         .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
         .set(
