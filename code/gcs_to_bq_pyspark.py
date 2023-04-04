@@ -107,7 +107,7 @@ def execute(year: int, month: int):
     path = f"gs://gharchive_dataset_gcs/pq/{year}/{month:02}/*/*"
     project_ID = "onyx-nexus-382423"
     project_dataset = "gharchive_dataset"
-    table = f"{year}"
+    table = "github_data"
 
     global spark
     spark = config()
@@ -119,6 +119,6 @@ def execute(year: int, month: int):
 
 
 if __name__=="__main__":
-    year=2015
-    month=2
+    year=2020
+    month=1
     execute(year=year, month=month)
