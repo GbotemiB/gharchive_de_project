@@ -47,6 +47,7 @@ To verify your installation, run `terraform -help`
     * BigQuery Admin
     * Compute Admin
     * Storage Admin
+    * Storage Object Admin
   * Skip granting additional users access, and click "Done".
 
 After you create your service account, download your service account key.
