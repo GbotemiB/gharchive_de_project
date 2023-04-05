@@ -1,4 +1,6 @@
 import os
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--master local[*] pyspark-shell'
+
 from pathlib import Path
 
 from prefect import flow, task

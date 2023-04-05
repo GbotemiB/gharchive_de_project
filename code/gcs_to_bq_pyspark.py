@@ -1,10 +1,8 @@
-from prefect import flow, task
+import os
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--master local[*] pyspark-shell'
 
-from pyspark.conf import SparkConf
-from pyspark.context import SparkContext
-from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, split, when
-
+from prefect import flow, task
 from spark_config import config
 
 @task(log_prints=True)

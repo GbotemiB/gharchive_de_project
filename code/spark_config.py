@@ -1,9 +1,7 @@
-import os
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--master local[2] pyspark-shell'
-
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, split, when
 
 
 def config():

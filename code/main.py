@@ -27,7 +27,7 @@ def pipeline(year: int, months: list, days=None):
 
 
 if __name__ == "__main__":
-    year = 2015
+    year = 2020
     month = [i for i in range(1, 2)]
-    day = [i for i in range(3, 4)]
+    day = [i for i in range(1, 2)]
     pipeline(year, month, day)
