@@ -69,6 +69,7 @@ After you create your service account, download your service account key.
   ![show](image/variables.png)
 
   * set your project_id, region, BQ_DATASET, cloud_storage, compute_instance
+NOTE: the machine type used in the project is a c3 machine type, which is currently in preview. you can use an alternative machine type like `e2-standard-8` by editing the configuration in `main.tf`.
 
 * open terminal and run `terraform init` to initialize files. This might take a few mins.
   ![show](image/terraform_init.png)

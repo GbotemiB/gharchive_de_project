@@ -90,6 +90,10 @@ export PATH="${JAVA_HOME}/bin:${PATH}"
 
 export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
 export PATH="${SPARK_HOME}/bin:${PATH}"
+
+export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
+
 ```
 after exiting,
 logout and login back into the session to effect the changes or run `source ~/.bashrc`
@@ -115,7 +119,7 @@ We will running prefect locally here.
   prefect block register -m prefect_gcp
   prefect block register -m prefect_dbt
   ```
-* configuring prefect blocks. blocks can be configured with scripts or through the Prefect UI. The blocks will be configured via the UI.
+* configuring prefect blocks. blocks can be configured with scripts or through the Prefect UI. The blocks will be configured via the UI. if you want to configure blocks via scripts, use the scripts in the blocks folder.
   #### GCP bucket block
     ![show](images/prefect_block.png)
      * click the + to configure a block
@@ -140,15 +144,9 @@ We will running prefect locally here.
   * go to the credentials folder and create `credentials.json` file.
   * copy the google credentials details into it and save it.
 
-
-
   ### Deployment
   * Go back to terminal to configure deployment 
   * change directory into the clone repo folder and running the following.
-    ```
-    export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
-    export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
-    ```
 
     ```
     prefect deployment build code/main.py:pipeline \
@@ -158,7 +156,6 @@ We will running prefect locally here.
     ```
      - the -n parameter set the name of the deployment in prefect.
      - the -o parameter set the output of the file.
-     - the -sb parameter set the storage block.
      - the --apply parameter apply the deployment file to prefect.
 
     ```
@@ -190,8 +187,5 @@ We will running prefect locally here.
 
 when you are done, dont forget to tear down the infrastructure with `terraform destroy`
 
-
-
-
-
+if you have any questions, feel free to reach me via [Mail](gbotemibolarinwa@gmail.com) or via [Twitter](https://twitter.com/_oluwagbotty)
 [def]: #gharchive-de-project

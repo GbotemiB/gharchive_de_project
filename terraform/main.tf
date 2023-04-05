@@ -16,7 +16,7 @@ provider "google" {
  
 }
  
-//resources to create ubuntu 20.04 with 30gb of space
+//resources to create ubuntu 22.04 with 30gb of space
 resource "google_compute_instance" "default" {
   name         = var.compute_instance
   machine_type = var.machine_type
