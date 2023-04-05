@@ -16,7 +16,7 @@ provider "google" {
  
 }
  
-//resources to create ubuntu 20.04 with 25gb of space
+//resources to create ubuntu 20.04 with 30gb of space
 resource "google_compute_instance" "default" {
   name         = var.compute_instance
   machine_type = var.machine_type
@@ -25,8 +25,8 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-2004-focal-v20230302"
-      size=25
+      image = "ubuntu-2204-jammy-v20230302"
+      size=30
     }
   }
 
