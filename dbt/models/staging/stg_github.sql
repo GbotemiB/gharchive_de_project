@@ -12,4 +12,4 @@ select
     cast(org_exists	as boolean) as org_exists,
     cast(count_commits as integer) as count_commits	
     
-from {{ source("staging", "github") }}
+from {{ source("staging", "github_data") }}

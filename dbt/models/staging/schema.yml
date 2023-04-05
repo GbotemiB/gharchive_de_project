@@ -7,4 +7,4 @@ sources:
     
 
     tables:
-      - name: 'github'
+      - name: 'github_data'
