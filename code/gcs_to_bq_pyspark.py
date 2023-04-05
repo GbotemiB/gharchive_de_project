@@ -1,52 +1,11 @@
 from prefect import flow, task
+
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, split, when
 
-
-def config():
-    credentials_location = "credentials/credentials.json"
-
-    conf = (
-        SparkConf()
-        .setMaster("local[*]")
-        .setAppName("test")
-        .set(
-            "spark.jars",
-            "lib/gcs-connector-hadoop3-2.2.5.jar, \
-            lib/spark-3.2-bigquery-0.29.0-preview.jar",
-        )
-        .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
-        .set(
-            "spark.hadoop.google.cloud.auth.service.account.json.keyfile",
-            credentials_location,
-        )
-    )
-
-    # hadoop configurations
-    sc = SparkContext(conf=conf)
-    hadoop_conf = sc._jsc.hadoopConfiguration()
-
-    hadoop_conf.set(
-        "fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS"
-    )
-    hadoop_conf.set(
-        "fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem"
-    )
-    hadoop_conf.set("fs.gs.auth.service.account.json.keyfile", credentials_location)
-    hadoop_conf.set("fs.gs.auth.service.account.enable", "true")
-
-    # creating spark session
-    spark = (
-        SparkSession.builder.master("local[*]")
-        .appName("test")
-        .config(conf=sc.getConf())
-        .getOrCreate()
-    )
-
-    return spark
-
+from spark_config import config
 
 @task(log_prints=True)
 def read_data_from_gcs(path: str):
@@ -103,8 +62,8 @@ def execute(year: int, month: int):
     """
     this is the execution function on all the operations
     """
-
-    path = f"gs://gharchive_dataset_gcs/pq/{year}/{month:02}/*/*"
+    bucket = "gharchive_dataset_gcs"
+    path = f"gs://{bucket}/pq/{year}/{month:02}/*/*"
     project_ID = "onyx-nexus-382423"
     project_dataset = "gharchive_dataset"
     table = "github_data"
@@ -117,8 +76,13 @@ def execute(year: int, month: int):
     )
     spark.stop()
 
+@flow()
+def parent_flow(year: int, months: list) -> None:
+    
+    for month in months:
+        execute(year=year, month=month)
 
 if __name__=="__main__":
     year=2020
-    month=1
-    execute(year=year, month=month)
+    month=[1]
+    parent_flow(year, month)
