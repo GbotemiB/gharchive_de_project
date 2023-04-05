@@ -174,6 +174,7 @@ We will running prefect locally here.
       - set the month to take just a single month in a list e.g [1] which means January;
       - set the day to any day of the month e.g 1 which means the first day. Note if the day parameter is not set, this will run for every day in the chosen month.
     * the prefect flow run can be monitored from the terminal session running prefect agent.
+    * Optional: you can forward spark port which is 4040 from vscode to view your spark jobs
 
 ### Visualization
 * visit [Google Looker Studio](https://lookerstudio.google.com/)

@@ -37,6 +37,6 @@ variable "compute_instance" {
 
 variable "machine_type" {
   type = string
-  default = "e2-medium"
+  default = "c3-highcpu-8"
 }
 
