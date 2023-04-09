@@ -56,7 +56,7 @@ Instructions to setup Terraform and GCP infrastruture [click here](terraform/REA
 
 login into the google compute instance using ssh. to setup gcp with vscode [click here](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=13)
 
-Note: The following instructions does not use docker to run the ochestration. To use docker [click here](docker.md)
+Note: The following instructions does not use docker to run the ochestration. To use docker [click here](#)
 ### Java runtime and Spark
 connect to your vm instance via vscode and continue.
 create a directory for the installation and enter the directory
